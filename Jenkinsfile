@@ -12,13 +12,13 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                bat 'docker build -t jenkins-demo:v1 .'
+                sh  'docker build -t jenkins-demo:v1 .'
             }
         }
 
         stage('Verify Image') {
             steps {
-                bat 'docker images'
+                sh 'docker images'
             }
         }
 
