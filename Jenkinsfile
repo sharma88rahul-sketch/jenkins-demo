@@ -24,7 +24,7 @@ pipeline {
 	stage('buld the image'){
 	    steps{
 		sh "docker rm -d app || true"
-		sh "docker run -d --name app -p 8080:80 jenkins-demo:v1"
+		sh "docker run -d --name app -p 8081:80 jenkins-demo:v1"
 	}
     }
 	}
