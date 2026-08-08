@@ -18,8 +18,8 @@ pipeline {
 
         stage('push image on docker hub') {
             steps {
-		sh 'docker tag jenkins-demo:v1 rahuldevops/jenkins-demo:v1'
-                sh 'docker push rahuldevops/jenkins-demo:v1'
+		sh 'docker tag jenkins-demo:v1 chitranshjangra23/jenkins-demo:v1'
+                sh 'docker push chitranshjangra23/jenkins-demo:v1'
             }
         }
 	stage('buld the image'){
