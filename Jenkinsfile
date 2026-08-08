@@ -16,16 +16,16 @@ pipeline {
             }
         }
 
-        stage('Verify Image') {
+        stage('push image on docker hub') {
             steps {
-                sh 'docker images'
+                sh 'docker push rahuldevops/jenkins-demo:v1'
             }
         }
 	stage('buld the image'){
-	    steps{
+	    steps {
 		sh "docker rm -f app || true"
 		sh "docker run -d --name app -p 8081:80 jenkins-demo:v1"
+	    }
 	}
     }
-	}
 }
