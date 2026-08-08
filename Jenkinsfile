@@ -18,6 +18,7 @@ pipeline {
 
         stage('push image on docker hub') {
             steps {
+		sh 'docker tag jenkins-demo:v1 rahuldevops/jenkins-demo:v1'
                 sh 'docker push rahuldevops/jenkins-demo:v1'
             }
         }
