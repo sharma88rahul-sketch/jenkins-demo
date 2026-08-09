@@ -1,3 +1,4 @@
+@Library('jenkins-shared-library') 
 pipeline {
 
     agent any
@@ -12,7 +13,7 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh  'docker build -t jenkins-demo:v1 .'
+                buildImage()
             }
         }
 	stage('Docker Login') {
