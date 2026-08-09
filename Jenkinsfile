@@ -15,7 +15,19 @@ pipeline {
                 sh  'docker build -t jenkins-demo:v1 .'
             }
         }
-
+	stage('Docker Login') {
+            steps {
+                withCredentials([
+                    usernamePassword(
+                        credentialsId: 'dockerhub-creds',
+                        usernameVariable: 'DOCKER_USER',
+                        passwordVariable: 'DOCKER_PASS'
+                    )
+                ]) {
+                    sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
+                }
+            }
+        }
         stage('push image on docker hub') {
             steps {
 		sh 'docker tag jenkins-demo:v1 chitranshjangra23/jenkins-demo:v1'
