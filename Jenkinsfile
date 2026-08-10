@@ -1,27 +1,12 @@
 pipeline {
     agent any
 
-    tools {
-        sonarQubeScanner 'sonar-scanner'
-    }
-
     stages {
 
-        stage('Clone') {
+        stage('Check Sonar') {
             steps {
-                git 'https://github.com/sharma88rahul-sketch/jenkins-demo.git'
-            }
-        }
-
-        stage('SonarQube Scan') {
-            steps {
-                withSonarQubeEnv('sonar') {
-                    sh '''
-                    sonar-scanner \
-                    -Dsonar.projectKey=jenkins-demo \
-                    -Dsonar.sources=.
-                    '''
-                }
+                sh 'which sonar-scanner || true'
+                sh 'sonar-scanner --version || true'
             }
         }
     }
