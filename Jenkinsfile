@@ -1,12 +1,26 @@
 pipeline {
     agent any
 
+    tools {
+        sonarQubeScanner 'sonar-scanner'
+    }
+
     stages {
-        stage('Check Sonar Tool') {
+
+        stage('Clone') {
             steps {
-                script {
-                    def scannerHome = tool 'sonar-scanner'
-                    echo "Scanner Home: ${scannerHome}"
+                git 'https://github.com/sharma88rahul-sketch/jenkins-demo.git'
+            }
+        }
+
+        stage('SonarQube Scan') {
+            steps {
+                withSonarQubeEnv('sonar') {
+                    sh '''
+                    sonar-scanner \
+                    -Dsonar.projectKey=jenkins-demo \
+                    -Dsonar.sources=.
+                    '''
                 }
             }
         }
