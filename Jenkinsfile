@@ -2,11 +2,12 @@ pipeline {
     agent any
 
     stages {
-
-        stage('Check Sonar') {
+        stage('Check Sonar Tool') {
             steps {
-                sh 'which sonar-scanner || true'
-                sh 'sonar-scanner --version || true'
+                script {
+                    def scannerHome = tool 'sonar-scanner'
+                    echo "Scanner Home: ${scannerHome}"
+                }
             }
         }
     }
