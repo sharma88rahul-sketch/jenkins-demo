@@ -1,0 +1,15 @@
+pipeline {
+	agent any
+	stages{
+	  stage('code'){
+		steps{
+		   git branch: "main"
+		      url: ""
+		}
+		}
+	    stage('build'){
+		steps {
+		    sh:"docker build -t rahul:letest ."
+		} 
+	}		
+}
